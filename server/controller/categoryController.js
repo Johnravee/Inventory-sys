@@ -1,4 +1,4 @@
-import { addCategory, getAllCategories, updateCategory, deleteCategory } from "../models/categoryModel.js"
+import { addCategory, getAllCategories, updateCategory, deleteCategory, categoryCounter } from "../models/categoryModel.js"
 
 
 export const getCategories = async (req, res) =>{
@@ -39,7 +39,7 @@ export const updatedCategory = async (req, res) =>{
         const { categoryId, categoryName } = req.body
         const result = await updateCategory(categoryId, categoryName)
         
-        if(!result.affectedRows > 0) return res.status(400).json({error : "Set palang error handler"})
+        if(result.affectedRows === 0) return res.status(400).json({error : "Set palang error handler"})
         
         return res.status(200).json({successMsg : "oks na ayusin nalang bukas"})
 
@@ -61,5 +61,20 @@ export const removeCategory = async (req, res) =>{
 
     } catch (error) {
          console.error(`Category controller error: ${error}`)
+    }
+}
+
+export const totalCategory = async (req, res) => {
+    try {
+        const result = await categoryCounter()
+        
+        if (result.length === 0) {
+            return res.status(404).json({ error: "No categories found" })
+        }
+
+        return res.status(200).json({ successMsg: "Categories counted", categories: result })
+    } catch (error) {
+        console.error(`Unexpected error from controller: ${error.message}`)
+        return res.status(500).json({ error: error.message })
     }
 }

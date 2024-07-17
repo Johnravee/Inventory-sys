@@ -4,21 +4,14 @@ import { StyleSheetManager } from 'styled-components'
 
 // Import components
 import Login from './assets/components/login'
-import Sidebar from './assets/components/sidebar'
-import Dashboard from './assets/components/dashboard'
 import PrivateRoutes from './assets/private/PrivateRoutes'
+import Suppliers from './assets/components/Suppliers'
 
 //*Layouts
 import CategoryLayout from './assets/layout/CategoryLayout'
-
-const SidebarDashboard = () => {
-    return (
-        <div className='w-100 d-flex justify-content-center'>
-            <Sidebar />
-            <Dashboard />
-        </div>
-    )
-}
+import DashboardLayout from './assets/layout/DashboardLayout'
+import ProductLayout from './assets/layout/ProductLayout'
+import SuppliersLayout from './assets/layout/SuppliersLayout'
 
 function App() {
     return (
@@ -26,9 +19,13 @@ function App() {
             <StyleSheetManager shouldForwardProp={(prop) => prop !== 'align'}>
                 <Routes>
                     <Route path='/login' element={<Login />} />
+                    <Route path='/test' element={<Suppliers />} />
+                    {/*Private components or Secured Components */}
                     <Route element={<PrivateRoutes />}>
-                        <Route path="/" element={<SidebarDashboard />} />
+                        <Route path="/" element={<DashboardLayout />} />
                         <Route path="/Categories" element={<CategoryLayout />} />
+                        <Route path="/products" element={<ProductLayout />} />
+                         <Route path="/suppliers" element={<SuppliersLayout />} />
                     </Route>
                 </Routes>
             </StyleSheetManager>

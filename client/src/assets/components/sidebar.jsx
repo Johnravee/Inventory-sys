@@ -20,7 +20,7 @@ export default function Sidebar() {
     }
 
     return (
-        <aside className="col-auto vh-100 w-25 d-flex bg-dark align-items-center flex-column border-end shadow-sm sticky-top">
+        <aside className="col-auto vh-100 w-25 d-flex bg-dark align-items-center flex-column border-end shadow-sm sticky-top pe-3">
             <div className="list-group w-100 d-flex justify-content-evenly rounded-0 link-offset-1-hover">
                 <Link to="/" className="list-group-item list-group-item-action p-3 bg-dark text-white border-0">
                     <i className="bi bi-speedometer2 m-2"></i>
@@ -32,14 +32,14 @@ export default function Sidebar() {
                     <span className="m-1 fs-6 fw-bold">Categories</span>
                 </Link>
 
-                <Link to="/profile" className="list-group-item list-group-item-action p-3 border-0 bg-dark text-white">
-                    <i className="bi bi-truck m-2"></i>
-                    <span className="m-1 fs-6 fw-bold">Suppliers</span>
-                </Link>
-
                 <Link to="/products" className="list-group-item list-group-item-action p-3 border-0 bg-dark text-white">
                     <i className="bi bi-ui-checks-grid m-2"></i>
                     <span className="m-1 fs-6 fw-bold">Products</span>
+                </Link>
+
+                <Link to="/suppliers" className="list-group-item list-group-item-action p-3 border-0 bg-dark text-white">
+                    <i className="bi bi-truck m-2"></i>
+                    <span className="m-1 fs-6 fw-bold">Suppliers</span>
                 </Link>
 
                 <Link to="#" className="list-group-item list-group-item-action p-3 border-0 bg-dark text-white">

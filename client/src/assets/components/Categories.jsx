@@ -181,10 +181,10 @@ function Categories() {
     }
 
     return (
-        <div className='w-100 d-flex justify-content-center'>
+        <div className='w-100 h-auto d-flex justify-content-center bg-secondary-subtle'>
             <div className="new w-50 h-auto">
-                <div className="card m-5">
-                    <h5 className="card-header fw-bold"><i className="bi bi-grid-3x3-gap"></i> ADD CATEGORY</h5>
+                <div className="p-3 bg-white m-5 border-top border-3 border-primary">
+                    <h5 className="fw-bold"><i className="bi bi-grid-3x3-gap"></i> ADD CATEGORY</h5>
                     <div className="card-body">
                         {errorHandler && (
                             <div className="alert alert-danger" role="alert">
@@ -205,8 +205,8 @@ function Categories() {
                     </div>
                 </div>
             </div>
-            <div className="table w-50">
-                <div className="list m-5 border">
+            <div className="table w-50 ">
+                <div className="list m-5 border-3  border-top border-primary">
                     <DataTable
                         title="ALL CATEGORIES"
                         columns={columns}
@@ -224,7 +224,7 @@ function Categories() {
                                 <div className="input-group input-group-md">
                                     <input type="text" className="form-control" id='searchInput' placeholder='Filter by category' onChange={handleFilter} />
                                     <button className="input-group-text btn btn-primary" onClick={handleClearSearch}>Clear</button>
-                                    <button className='input-group-text btn btn-success' onClick={handleDownloadCSV}><i className="bi bi-download"></i></button>
+                                    <button className='input-group-text btn btn-success fw-bold' onClick={handleDownloadCSV}><i className="bi bi-download pe-2"></i>CSV</button>
                                 </div>
                             </div>
                         }

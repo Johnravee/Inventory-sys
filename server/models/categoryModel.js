@@ -38,11 +38,7 @@ export const getAllCategories = async () =>{
         }
     
     } catch (error) {
-        if(error.errno === 1062){
-            return errorHandler(`Failed to add category, Already exist.`)
-        }else{
-             return errorHandler(`Unexpected error, please try again later.`)
-        }
+        return errorHandler(`Unexpected error, please try again later.`)
     }
 }
 
@@ -74,4 +70,25 @@ export const deleteCategory = async (id) => {
            console.error("Modal error", error)
     }
     
+}
+
+export const categoryCounter = async () =>{
+    try {
+        const queryCommand = "SELECT COUNT(Category) as totalCategory FROM category"
+        const [result] = await conn.execute(queryCommand)
+
+        const totalCategory = result[0].totalCategory
+
+        if(result.length > 0){
+            console.log('====================================')
+            console.log(`Total category (model) : ${totalCategory}`)
+            console.log('====================================')
+        }
+
+        return totalCategory
+    
+    } catch (error) {
+        console.error(`Unexpected error from model: ${error}`) 
+        return errorHandler(`Unexpected error, please try again later.`)
+    }
 }

@@ -32,13 +32,13 @@ function Nav() {
     },[])
 
   return (
-    <Navbar className="bg-body-tertiary">
+    <Navbar className="bg-success border-bottom border-2 border-success">
       <Container>
-        <Navbar.Brand>ADMINISTRATOR</Navbar.Brand>
+        <Navbar.Brand className='fw-bold  text-white'>INVENTORY</Navbar.Brand>
         <Navbar.Toggle />
         <Navbar.Collapse className="justify-content-end">
-          <Navbar.Text>
-            Signed in as: {userData}
+          <Navbar.Text className='fw-bold  text-white'>
+            Signed in as : {userData}
           </Navbar.Text>
         </Navbar.Collapse>
       </Container>

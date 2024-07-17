@@ -2,7 +2,8 @@ import express from 'express'
 import cookieParser from 'cookie-parser'
 import authenRoute from './routes/authenRoute.js'
 import categoryRoute from './routes/categoryRoute.js'
-
+import productsRoute from './routes/productsRoute.js'
+import supplierRoute from './routes/suppliersRoute.js'
 import cors from 'cors'
 const app = express()
 app.use(express.json())
@@ -21,6 +22,8 @@ const port = 3000
 
 app.use(authenRoute)
 app.use(categoryRoute)
+app.use(productsRoute)
+app.use(supplierRoute)
 
 
 

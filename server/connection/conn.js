@@ -6,7 +6,8 @@ const conn = mysql.createPool({
     host: "localhost",
     user: "root",
     password: "",
-    database: "inventory"
+    database: "inventory",
+    waitForConnections: true
 });
 
 conn.getConnection((err) => {

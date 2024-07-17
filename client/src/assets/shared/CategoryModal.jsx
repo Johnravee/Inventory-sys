@@ -1,5 +1,5 @@
 import axios from 'axios'
-import React, { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import Button from 'react-bootstrap/Button'
 import Modal from 'react-bootstrap/Modal'
 
@@ -11,7 +11,7 @@ function CategoryModal(props) {
 
     // Update state when props change
     useEffect(() => {
-        setCategoryName(categoryname)
+       setCategoryName(categoryname)
         setCategoryId(categoryid)
     }, [categoryname, categoryid])
 
