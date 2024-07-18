@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import Modal from 'react-bootstrap/Modal'
 import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
@@ -8,17 +8,21 @@ import axios from 'axios'
 import logo from '../img/llogo.png'
 
 function AddProductModal(props) {
-  const { show, onHide, fetchData } = props
+  const { show, onHide, fetchData, categories } = props
 
   const [productImage, setProductImage] = useState(logo)
   const [file, setFile] = useState(null)
   const [formData, setFormData] = useState()
+  const [categoriesData, setCategoriesData] = useState([])
+
+ 
+  useEffect(() =>{
+    setCategoriesData(categories)
+  },[categories])
 
   const handleInputChange = (e) => {
     const { value, name } = e.target
     setFormData({ ...formData, [name]: value })
-
-
   }
 
   const handleImageChange = (e) => {
@@ -49,7 +53,7 @@ function AddProductModal(props) {
     if(response.status === 201){
       onHide()
       setProductImage(logo)
-      fetchData(  )
+      fetchData()
     }
 
 
@@ -57,6 +61,9 @@ function AddProductModal(props) {
     console.error('Error submitting form:', error)
   }
 }
+
+
+
 
 
   return (
@@ -116,15 +123,21 @@ function AddProductModal(props) {
               Category
             </Form.Label>
             <Col lg={9}>
-              <Form.Control
-                type="text"
+              <Form.Select
+                aria-label="Default select example"
                 name="category"
                 onChange={handleInputChange}
                 className="inputs"
                 required
-              />
-            </Col>
-          </Form.Group>
+              >
+                {categoriesData.map((category) => (
+                  <option key={category.id} value={category.Category}>
+                    {category.Category}
+                  </option>
+                ))}
+              </Form.Select>
+  </Col>
+</Form.Group>
           <Form.Group as={Col} className="mb-3 d-flex align-items-center">
             <Form.Label column lg={3}>
               Status

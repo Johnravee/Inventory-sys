@@ -14,9 +14,11 @@ function Products() {
     const [addModalShow, setAddModalShow] = useState(false)
     const [clickedRow, setClickedRow] = useState({})
     const [csvFIle, setCSVFile] = useState()
+    const [categories, setCategories] = useState([])
     
     useEffect(() => {
         fetchData()
+        fetchCategory()
     }, [])
 
     async function fetchData() {
@@ -184,6 +186,17 @@ const handleFilter = (e) =>{
         }
     }
 
+    const fetchCategory = async () =>{
+        try {
+            const response = await axios.get("http://localhost:3000/api/getallcategories")
+            const data = response.data
+            setCategories(data)
+         
+            
+        } catch (error) {
+            console.error('Error fetching categories:', error)
+        }
+        }
 
     return (
         <div className='w-100 h-auto bg-secondary-subtle d-flex justify-content-start align-items-start'>
@@ -231,7 +244,8 @@ const handleFilter = (e) =>{
             <AddProductModal 
             show={addModalShow} 
             onHide={() => setAddModalShow(false)}
-            fetchData={fetchData} 
+            fetchData={fetchData}
+            categories={categories}
             />
         </div>
     )

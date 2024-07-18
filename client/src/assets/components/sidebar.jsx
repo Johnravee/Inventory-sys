@@ -42,9 +42,15 @@ export default function Sidebar() {
                     <span className="m-1 fs-6 fw-bold">Suppliers</span>
                 </Link>
 
+                <Link to="/customers" className="list-group-item list-group-item-action p-3 border-0 bg-dark text-white">
+                    <i className="bi bi-people-fill m-2"></i>
+                    <span className="m-1 fs-6 fw-bold">Customers</span>
+                </Link>
+
+
                 <Link to="#" className="list-group-item list-group-item-action p-3 border-0 bg-dark text-white">
-                    <i className="bi bi-box m-2"></i>
-                    <span className="m-1 fs-6 fw-bold">Stocks</span>
+                    <i className="bi bi-handbag m-2"></i>
+                    <span className="m-1 fs-6 fw-bold">Purchases</span>
                 </Link>
 
                 <Link to="#" className="list-group-item list-group-item-action p-3 border-0 bg-dark text-white">

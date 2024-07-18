@@ -5,13 +5,16 @@ import { StyleSheetManager } from 'styled-components'
 // Import components
 import Login from './assets/components/login'
 import PrivateRoutes from './assets/private/PrivateRoutes'
-import Suppliers from './assets/components/Suppliers'
+import Purchases from './assets/components/Purchases'
+import Customers from './assets/components/Customers'
+
 
 //*Layouts
 import CategoryLayout from './assets/layout/CategoryLayout'
 import DashboardLayout from './assets/layout/DashboardLayout'
 import ProductLayout from './assets/layout/ProductLayout'
 import SuppliersLayout from './assets/layout/SuppliersLayout'
+import CustomersLayout from './assets/layout/CustomersLayout'
 
 function App() {
     return (
@@ -19,13 +22,14 @@ function App() {
             <StyleSheetManager shouldForwardProp={(prop) => prop !== 'align'}>
                 <Routes>
                     <Route path='/login' element={<Login />} />
-                    <Route path='/test' element={<Suppliers />} />
+                    <Route path='/test' element={<Purchases />} />
                     {/*Private components or Secured Components */}
                     <Route element={<PrivateRoutes />}>
                         <Route path="/" element={<DashboardLayout />} />
                         <Route path="/Categories" element={<CategoryLayout />} />
                         <Route path="/products" element={<ProductLayout />} />
                          <Route path="/suppliers" element={<SuppliersLayout />} />
+                         <Route path="/customers" element={<CustomersLayout />} />
                     </Route>
                 </Routes>
             </StyleSheetManager>
