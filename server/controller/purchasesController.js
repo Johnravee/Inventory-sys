@@ -1,4 +1,4 @@
-import { getOrdersList, getSalesProduct, insertBuyedProduct } from "../models/purchasesModel.js"
+import { deleteOrder, getOrdersList, getSalesProduct, insertBuyedProduct } from "../models/purchasesModel.js"
 
 
 export const addBuyedProduct = async (req, res) =>{
@@ -38,12 +38,25 @@ export const retrieveOrdersList = async (req, res) =>{
             
 
             console.log('====================================');
-            console.log(JSON.parse(result[0].ordered_product.orders));
+            console.log(result);
             console.log('====================================');
 
         return res.status(200).json(result)
 
     } catch (error) {
          console.error("Error fetching (controller) :", error)
+    }
+}
+
+export const removeOrder = async (req, res) => {
+    const data = req.body
+    try {
+        const result = await deleteOrder(data)
+
+        if(!result) return res.status(404).json({ error: 'No orders found' })
+            
+        return res.status(200).json(result)
+    } catch (error) {
+          console.error("Error deleting order (controller) :", error)
     }
 }

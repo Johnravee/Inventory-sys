@@ -37,7 +37,7 @@ export const insertBuyedProduct = async (data) => {
 
 export const getSalesProduct = async () =>{
     try {
-        const queryCommand = 'SELECT id, name, price FROM product_list WHERE status = "Active"'
+        const queryCommand = 'SELECT id, name, price FROM product_list WHERE status = "Active" AND stocks > 0'
 
         const [result] = await conn.execute(queryCommand)
 
@@ -60,4 +60,17 @@ export const getOrdersList = async () =>{
       } catch (error) {
         console.error("Error ferching orders (model)", error)
       }
+}
+
+
+export const deleteOrder = async (data) =>{
+    const { id } = data
+    try {
+        const queryCommand = "DELETE FROM orders WHERE id = ?"
+        const result = await conn.execute(queryCommand, [id])
+
+        if(result) return result
+    } catch (error) {
+         console.error("Error deleting order (model)", error)
+    }
 }
