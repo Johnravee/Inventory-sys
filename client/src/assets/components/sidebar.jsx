@@ -53,9 +53,9 @@ export default function Sidebar() {
                     <span className="m-1 fs-6 fw-bold">Purchases</span>
                 </Link>
 
-                <Link to="#" className="list-group-item list-group-item-action p-3 border-0 bg-dark text-white">
+                <Link to="/sales" className="list-group-item list-group-item-action p-3 border-0 bg-dark text-white">
                     <i className="bi bi-printer m-2"></i>
-                    <span className="m-1 fs-6 fw-bold">Sales Report</span>
+                    <span className="m-1 fs-6 fw-bold">Sales</span>
                 </Link>
 
                 <button className="list-group-item list-group-item-action p-3 border-0 bg-dark text-danger" onClick={handleLoggingout}>

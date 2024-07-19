@@ -74,3 +74,19 @@ export const deleteOrder = async (data) =>{
          console.error("Error deleting order (model)", error)
     }
 }
+
+
+
+
+export const getPopularProducts = async () =>{
+    try {
+        const queryCommand = 'SELECT id, ordered_product, SUM(amount) AS sales FROM `orders` WHERE amount > 1000 GROUP BY ordered_product'
+
+        const [result] = await conn.execute(queryCommand)
+
+        if(result) return result
+
+    } catch (error) {
+          console.error("Error ferching products (model)", error)
+    }
+}

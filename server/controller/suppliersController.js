@@ -1,4 +1,4 @@
-import { addNewSupplier, deleteSupplier, getAllSuppliers, updateSupplier } from "../models/suppliersModel.js"
+import { addNewSupplier, deleteSupplier, getAllSuppliers, updateSupplier, getActiveSuppliers } from "../models/suppliersModel.js"
 
 
 export const newSupplier = async (req, res) =>{
@@ -61,5 +61,19 @@ export const eraseSupplier = async (req, res) => {
 
     } catch (error) {
          console.error('Error deleting  supplier (controller):', error)
+    }
+}
+
+
+export const activeSuppliers = async (req, res) => {
+    try {
+        const result = await getActiveSuppliers()
+
+        if(!result.length > 0 ) return res.status(400).json({errorMsg : "Failed to fetch data"})
+
+        return res.status(200).json(result)
+        
+    } catch (error) {
+         console.error('Error fetch  supplier (controller):', error)
     }
 }

@@ -6,6 +6,7 @@ import productsRoute from './routes/productsRoute.js'
 import supplierRoute from './routes/suppliersRoute.js'
 import purchaseRoute from './routes/purchaseRoute.js'
 import customersRoute from './routes/customersRoute.js'
+import salesRoute from './routes/salesRoute.js'
 
 import cors from 'cors'
 const app = express()
@@ -29,7 +30,7 @@ app.use(productsRoute)
 app.use(supplierRoute)
 app.use(purchaseRoute)
 app.use(customersRoute)
-
+app.use(salesRoute)
 
 
 

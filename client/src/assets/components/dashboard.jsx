@@ -7,12 +7,18 @@ export default function Dashboard(){
     const [categoryCount, setCategoryCount] = useState(0)
     const [productCount, setProductCount] = useState(0)
     const [recentAddProduct, setRecentAddedProduct] = useState([])
+    const [suppliers, setSuppliers] = useState([])
+    const [popularProducts, setPopularProducts] = useState([])
+    const [allSales, setAllSales] = useState(0)
 
     //* side effects
     useEffect(() =>{
         countCategories()
         countProducts()
         recentAddedProduct()
+        activeSuppliers()
+        popularProd()
+        overallSales()
     },[])
 
     const countCategories = async () =>{
@@ -53,6 +59,36 @@ export default function Dashboard(){
         }
     }
 
+    const activeSuppliers = async () =>{
+        try {
+            const response = await axios.get('http://localhost:3000/api/activesuppliers')
+            const data = response.data
+           setSuppliers(data)
+        } catch (error) {
+            console.error(`Unexpected Error: ${error}`);
+        }
+    }
+
+    const popularProd = async () =>{
+        try {
+            const response = await axios.get('http://localhost:3000/api/popularproduct')
+            const data = response.data
+           setPopularProducts(data)
+        } catch (error) {
+            console.error(`Unexpected Error: ${error}`);
+        }
+    }
+
+    const overallSales = async () =>{
+        try {
+            const response = await axios.get('http://localhost:3000/api/overallsales')
+            const data = response.data[0].sales
+           setAllSales(data)
+        } catch (error) {
+            console.error(`Unexpected Error: ${error}`);
+        }
+    }
+
 
 
     return(
@@ -84,7 +120,7 @@ export default function Dashboard(){
                             <h1><i className="bi bi-people"></i></h1>
                         </div>
                         <div className="monitor-context d-flex align-items-center flex-column">
-                            <h1 className="counter">8</h1>
+                            <h1 className="counter">{allSales}</h1>
                             <h5 className="monitor-title">Sales</h5>
                         </div>
                     </div>
@@ -123,66 +159,45 @@ export default function Dashboard(){
                     </div>
 
                      <div className="bg-white p-4 border-top border-3 border-success">
-                        <h5 className="border-bottom border-2 pb-2"><i className="bi bi-grid-3x3-gap"></i> LATEST SALES</h5>
+                        <h5 className="border-bottom border-2 pb-2"><i className="bi bi-grid-3x3-gap"></i> POPULAR PRODUCTS</h5>
                         <div className="card-body">
                             <table className="table">
                             <thead>
                                 <tr>
 
-                                <th scope="col">First</th>
-                                <th scope="col">Last</th>
-                                <th scope="col">Handle</th>
+                                <th scope="col">Product</th>
+                                <th scope="col">Sales</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                <td>Mark</td>
-                                <td>Otto</td>
-                                <td>@mdo</td>
-                                </tr>
-                                <tr>
-
-                                <td>Jacob</td>
-                                <td>Thornton</td>
-                                <td>@fat</td>
-                                </tr>
-                                <tr>
-                                <td>Larry the Bird</td>
-                                <td>@twitter</td>
-                                </tr>
+                                {popularProducts.map(element => (
+                                    <tr key={element.id}>
+                                        <td >{element.ordered_product}</td>
+                                        <td className="text-wrap">{element.sales}</td>
+                                    </tr>
+                                ))}
                             </tbody>
                             </table>
                         </div>
                     </div>
 
                      <div className="bg-white p-4 border-top border-3 border-success">
-                        <h5 className="border-bottom border-2 pb-2"><i className="bi bi-grid-3x3-gap"></i> RECENTLY ADDED PRODUCTS</h5>
+                        <h5 className="border-bottom border-2 pb-2"><i className="bi bi-grid-3x3-gap"></i>ACTIVE SUPPLIERS</h5>
                         <div className="card-body">
                             <table className="table">
                             <thead>
                                 <tr>
-
-                                <th scope="col">First</th>
-                                <th scope="col">Last</th>
-                                <th scope="col">Handle</th>
+                                <th scope="col">Name</th>
+                                <th scope="col">Email</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                <td>Mark</td>
-                                <td>Otto</td>
-                                <td>@mdo</td>
-                                </tr>
-                                <tr>
-
-                                <td>Jacob</td>
-                                <td>Thornton</td>
-                                <td>@fat</td>
-                                </tr>
-                                <tr>
-                                <td>Larry the Bird</td>
-                                <td>@twitter</td>
-                                </tr>
+                                  {suppliers.map(element => (
+                                    <tr key={element.id}>
+                                        <td >{element.name}</td>
+                                        <td className="text-wrap">{element.email}</td>
+                                    </tr>
+                                ))}
                             </tbody>
                             </table>
                         </div>

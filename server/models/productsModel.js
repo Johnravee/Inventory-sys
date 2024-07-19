@@ -115,3 +115,5 @@ export const recentlyAddedProduct = async () => {
     console.error('Error fetching recently added products (model):', error)
   }
 }
+
+

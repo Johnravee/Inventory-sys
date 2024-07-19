@@ -4,7 +4,7 @@ import jwt from 'jsonwebtoken'
 
 
 //*Token generator
-const Age = 24 * 60 * 60
+const Age = 24 * 60 * 60 * 1000
 const createToken = (userId) =>{
 return jwt.sign({userId}, 'thisisinventory', {expiresIn : Age,})
 }

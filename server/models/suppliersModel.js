@@ -68,3 +68,20 @@ export const deleteSupplier = async (data) =>{
     }
 
 }
+
+
+export const getActiveSuppliers = async () =>{
+    try {
+        const queryCommand = "SELECT * FROM suppliers WHERE status = 'Active' LIMIT 5"
+        const [result] = await conn.execute(queryCommand)
+
+        console.log('====================================')
+        console.log("Result from executing a query (model)", result)
+        console.log('====================================')
+
+        return result
+        
+    } catch (error) {
+        console.error('Error fetch supplier (model):', error)
+    }
+}
