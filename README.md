@@ -8,16 +8,6 @@ This repository contains SQL scripts for creating tables for an inventory manage
 - [Features](#features)
 - [Technologies Used](#technologies-used)
 - [Installation](#installation)
-- [Database Tables](#database-tables)
-  - [Table: `accounts`](#table-accounts)
-  - [Table: `category`](#table-category)
-  - [Table: `customers`](#table-customers)
-  - [Table: `orders`](#table-orders)
-  - [Table: `product_list`](#table-product_list)
-  - [Table: `suppliers`](#table-suppliers)
-- [Usage](#usage)
-- [Contributors](#contributors)
-- [License](#license)
 
 ## Introduction
 
