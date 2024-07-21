@@ -48,7 +48,7 @@ The Inventory Management System is designed to manage product inventory, custome
 ## Database Tables
 
 ```sql
---Table: `category`
+--Table: `accounts`
 CREATE TABLE `accounts` (
   `id` bigint(20) NOT NULL,
   `firstname` varchar(255) NOT NULL,
