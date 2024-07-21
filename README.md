@@ -47,9 +47,8 @@ The Inventory Management System is designed to manage product inventory, custome
 
 ## Database Tables
 
-### Table: `accounts`
-
 ```sql
+--Table: `category`
 CREATE TABLE `accounts` (
   `id` bigint(20) NOT NULL,
   `firstname` varchar(255) NOT NULL,
@@ -60,7 +59,7 @@ CREATE TABLE `accounts` (
   UNIQUE KEY `accounts_email_unique` (`email`)
 )
 
-### Table: `category`
+--Table: `category`
 
 CREATE TABLE `category` (
   `id` int(11) NOT NULL,
@@ -70,7 +69,7 @@ CREATE TABLE `category` (
   KEY `id` (`id`),
   KEY `Category_2` (`Category`)
 )
-### Table: `customers`
+--Table: `customers`
 
 CREATE TABLE `customers` (
   `id` int(11) NOT NULL,
@@ -82,7 +81,7 @@ CREATE TABLE `customers` (
   UNIQUE KEY `contact` (`contact`)
 )
 
-### Table: `orders`
+--Table: `orders`
 
 CREATE TABLE `orders` (
   `id` bigint(20) UNSIGNED NOT NULL,
@@ -95,7 +94,7 @@ CREATE TABLE `orders` (
   PRIMARY KEY (`id`)
 )
 
-### Table: `product_list`
+--Table: `product_list`
 
 CREATE TABLE `product_list` (
   `id` bigint(20) UNSIGNED NOT NULL,
@@ -110,7 +109,7 @@ CREATE TABLE `product_list` (
   KEY `id` (`id`)
 )
 
-### Table: `suppliers`
+--Table: `suppliers`
 
 CREATE TABLE `suppliers` (
   `id` bigint(20) UNSIGNED NOT NULL,
@@ -123,6 +122,6 @@ CREATE TABLE `suppliers` (
   KEY `id` (`id`)
 )
 
+```
 
 This README format now includes the database name "inventory" in the installation instructions and provides structured information about each database table. Adjustments can still be made based on your specific project requirements and additional details you want to include.
-```
