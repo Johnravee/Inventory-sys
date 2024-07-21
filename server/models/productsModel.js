@@ -4,6 +4,8 @@ export const addProduct = async (datas) => {
   try {
     const { name, image, category, stocks, price, status } = datas
 
+    console.log(datas);
+
 
 
     const queryCommand = 'INSERT INTO product_list (name, image, category, stocks, price, status) VALUES (?, ?, ?, ?, ?, ?)'

@@ -29,10 +29,14 @@ function Products() {
                 setRows(data)
                 setCSVFile(formatCsvData(data))
             } else {
-                console.error('Failed to fetch products. Status:', response.status)
+               setRows([])
+                setPending(false)
             }
         } catch (error) {
-            console.error('Failed to fetch products:', error.message)
+            if(error.message.includes('404')){
+                setRows([])
+                setCSVFile([])
+            }
         } finally {
             setPending(false)
         }
@@ -239,6 +243,7 @@ const handleFilter = (e) =>{
             onHide={() => { setEditModalShow(false) }} 
             Data={clickedRow} 
             fetchData={fetchData}
+            categories={categories}
             />
 
             <AddProductModal 

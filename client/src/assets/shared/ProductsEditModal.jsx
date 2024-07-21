@@ -7,7 +7,8 @@ import Image from 'react-bootstrap/Image'
 import axios from 'axios'
 
 function ProductsEditModal(props) {
-  const { show, onHide, Data, fetchData } = props
+  const { show, onHide, Data, fetchData, categories } = props
+  
 
   
   const [file, setFile] = useState(null)
@@ -21,6 +22,11 @@ function ProductsEditModal(props) {
     status: '',
     image: ''
   })
+  const [categoriesData, setCategoriesData] = useState([])
+
+    useEffect(() => {
+    setCategoriesData(categories)
+  }, [categories])
 
 
 
@@ -167,14 +173,21 @@ function ProductsEditModal(props) {
               Category
             </Form.Label>
             <Col lg={9}>
-              <Form.Control
-                type="text"
+              <Form.Select
+                aria-label="Default select example"
                 name="category"
                 value={formData.category}
                 onChange={handleInputChange}
                 className="inputs"
                 required
-              />
+              >
+                <option value="">Select Category</option>
+                {categoriesData.map((category) => (
+                  <option key={category.id} value={category.Category}>
+                    {category.Category}
+                  </option>
+                ))}
+              </Form.Select>
             </Col>
           </Form.Group>
           <Form.Group as={Col} className="mb-3 d-flex align-items-center">

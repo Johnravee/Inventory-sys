@@ -168,9 +168,9 @@ export default function Login() {
                                 </form>
 
                                 <div className="w-100 d-flex justify-content-center mt-3">
-                                    <a className="text-decoration-none text-sm" onClick={recoverAcc}>
+                                    {/* <a className="text-decoration-none text-sm" onClick={recoverAcc}>
                                         <p className="text-center text-muted">Forgot password?</p>
-                                    </a>
+                                    </a> */}
                                 </div>
 
                                 <div className="w-100 d-flex justify-content-center align-items-center mt-2">

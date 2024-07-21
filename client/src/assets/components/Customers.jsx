@@ -192,7 +192,9 @@ const Customers = () => {
         }
 
       } catch (error) {
-        console.error("Error fetching customer (controller)", error)
+       setCsvData([])
+       setRows([])
+        setPending(false)
       }
     }
     

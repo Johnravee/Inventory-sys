@@ -12,17 +12,34 @@ function AddProductModal(props) {
 
   const [productImage, setProductImage] = useState(logo)
   const [file, setFile] = useState(null)
-  const [formData, setFormData] = useState()
+  const [formData, setFormData] = useState({
+    productName: '',
+    productStocks: '',
+    productPrice: '',
+    category: '',
+    status: 'Active', 
+  })
   const [categoriesData, setCategoriesData] = useState([])
+  const [categoryValid, setCategoryValid] = useState(false)
+  const [statusValid, setStatusValid] = useState(true)
 
- 
-  useEffect(() =>{
+  useEffect(() => {
     setCategoriesData(categories)
-  },[categories])
+  }, [categories])
 
   const handleInputChange = (e) => {
     const { value, name } = e.target
     setFormData({ ...formData, [name]: value })
+
+    // Validate category
+    if (name === 'category') {
+      setCategoryValid(value !== '')
+    }
+
+    // Validate status
+    if (name === 'status') {
+      setStatusValid(value !== '')
+    }
   }
 
   const handleImageChange = (e) => {
@@ -38,33 +55,41 @@ function AddProductModal(props) {
   }
 
   const handleFormSubmit = async (e) => {
-  e.preventDefault()
+    e.preventDefault()
 
-  try {
-     formData['image'] = file
-    const formDataToSend = formData
-
-    const response = await axios.post('http://localhost:3000/api/addnewproduct', formDataToSend, {
-      headers: {
-        'Content-Type': 'multipart/form-data',
-      },
-    })
-
-    if(response.status === 201){
-      onHide()
-      setProductImage(logo)
-      fetchData()
+    // Check if required fields are valid
+    if (!categoryValid || !statusValid) {
+      alert('Please select Category and Status')
+      return
     }
 
+    try {
+      const formDataToSend = {
+        ...formData,
+        image: file,
+      }
 
-  } catch (error) {
-    console.error('Error submitting form:', error)
+      // Create form data object to send
+      const data = new FormData()
+      for (let key in formDataToSend) {
+        data.append(key, formDataToSend[key])
+      }
+
+      const response = await axios.post('http://localhost:3000/api/addnewproduct', data, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      })
+
+      if (response.status === 201) {
+        onHide()
+        setProductImage(logo)
+        fetchData()
+      }
+    } catch (error) {
+      console.error('Error submitting form:', error)
+    }
   }
-}
-
-
-
-
 
   return (
     <Modal show={show} onHide={onHide} centered>
@@ -84,6 +109,7 @@ function AddProductModal(props) {
               <Form.Control
                 type="text"
                 name="productName"
+                value={formData.productName}
                 onChange={handleInputChange}
                 className="inputs"
                 required
@@ -97,7 +123,8 @@ function AddProductModal(props) {
             <Col lg={9}>
               <Form.Control
                 type="number"
-                name="productStocks"         
+                name="productStocks"
+                value={formData.productStocks}
                 onChange={handleInputChange}
                 className="inputs productStocks"
                 required
@@ -112,6 +139,7 @@ function AddProductModal(props) {
               <Form.Control
                 type="number"
                 name="productPrice"
+                value={formData.productPrice}
                 onChange={handleInputChange}
                 className="inputs text-success fw-bolder productPrice"
                 required
@@ -126,18 +154,20 @@ function AddProductModal(props) {
               <Form.Select
                 aria-label="Default select example"
                 name="category"
+                value={formData.category}
                 onChange={handleInputChange}
                 className="inputs"
                 required
               >
+                <option value="">Select Category</option>
                 {categoriesData.map((category) => (
                   <option key={category.id} value={category.Category}>
                     {category.Category}
                   </option>
                 ))}
               </Form.Select>
-  </Col>
-</Form.Group>
+            </Col>
+          </Form.Group>
           <Form.Group as={Col} className="mb-3 d-flex align-items-center">
             <Form.Label column lg={3}>
               Status
@@ -146,7 +176,7 @@ function AddProductModal(props) {
               <Form.Select
                 aria-label="Default select example"
                 name="status"
-                value={formData ? formData.status : 'Active'}
+                value={formData.status}
                 onChange={handleInputChange}
                 className="inputs"
                 required
@@ -177,7 +207,6 @@ function AddProductModal(props) {
                   fluid
                   style={{ maxWidth: '200px', maxHeight: '200px' }}
                   thumbnail
-                  
                 />
               </div>
             </Col>

@@ -25,7 +25,7 @@ export const allSuppliers = async (req, res) => {
     try {
         const result = await getAllSuppliers()
 
-        if(!result.length > 0 ) return res.status(400).json({errorMsg : "Failed to fetch data"})
+        if(!result.length > 0 ) return res.status(404).json({errorMsg : "Failed to fetch data"})
 
         return res.status(200).json(result)
         

@@ -27,11 +27,12 @@ function Suppliers() {
             const data = response.data
 
             setRows(data)
-
+            setCsvData(formatCsvData(data))
             setPending(false)
         } catch (error) {
-            console.error("Unexpected error :", error)
+            setRows([])
             setPending(false)
+            setCsvData([])
         }
   }
 
@@ -217,6 +218,7 @@ function Suppliers() {
       <AddSupplierModal 
       show={addSupplierModal}
       onHide={() => setSupplierModal(false)}
+      fetchData={fetchData}
       />
 
       <SupplierEditModal

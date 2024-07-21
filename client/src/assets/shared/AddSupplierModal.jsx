@@ -25,6 +25,7 @@ function AddSupplierModal(props) {
             const response = await axios.post('http://localhost:3000/api/addnewsupplier', formDataToSend)
 
             if(response.status === 200){
+              fetchData()
                 onHide()    
             }
         } catch (error) {

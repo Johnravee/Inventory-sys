@@ -36,7 +36,7 @@ function Purchases() {
         setProducts(data)
       }
     } catch (error) {
-      console.error('Error fetching products', error)
+      setProducts([])
     }
   }
 
@@ -49,7 +49,7 @@ function Purchases() {
         setCustomers(data)
       }
     } catch (error) {
-      console.error('Error fetching customers', error)
+      setCustomers([])
     }
   }
 
@@ -63,7 +63,7 @@ function Purchases() {
         setCsvData(formatCsvData(data))
       }
     } catch (error) {
-      console.error('Error fetching order lists', error)
+      setOrderLists([])
     }
   }
 
